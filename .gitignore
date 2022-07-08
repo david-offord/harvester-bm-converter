@@ -1,0 +1,6 @@
+*.bmp
+*.PAL
+*.BM
+Harvest-image/bin/
+Harvest-image/obj/Debug/
+packages/
