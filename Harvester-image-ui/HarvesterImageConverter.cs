@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
-using ImageMagick;
 
 namespace Harvester_image_ui
 {
