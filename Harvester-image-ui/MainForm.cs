@@ -11,6 +11,7 @@ namespace Harvester_image_ui
     {
         //if theyre converting 1 by 1, open the right folder each time
         string lastOpenedBmFolder;
+        string lastOpenedAbmFolder;
         string lastOpenedPaletteFolder;
 
         public MainForm()
@@ -54,8 +55,8 @@ namespace Harvester_image_ui
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                if (string.IsNullOrWhiteSpace(lastOpenedBmFolder) == false)
-                    openFileDialog.InitialDirectory = lastOpenedBmFolder;
+                if (string.IsNullOrWhiteSpace(lastOpenedPaletteFolder) == false)
+                    openFileDialog.InitialDirectory = lastOpenedPaletteFolder;
 
                 openFileDialog.Filter = "Harvester palette file (*.PAL)|*.PAL";
                 openFileDialog.FilterIndex = 2;
@@ -214,6 +215,186 @@ namespace Harvester_image_ui
         {
             HelpInfo hi = new HelpInfo();
             hi.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string abmFilePath = "";
+            string palettePath = "";
+            string savePath = "";
+            string fileName = "";
+
+            //open the image file
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (string.IsNullOrWhiteSpace(lastOpenedAbmFolder) == false)
+                    openFileDialog.InitialDirectory = lastOpenedAbmFolder;
+
+                openFileDialog.Filter = "Harvester image file (*.ABM)|*.ABM";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Title = "Open .ABM File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    abmFilePath = openFileDialog.FileName;
+                    fileName = openFileDialog.SafeFileName;
+                    lastOpenedAbmFolder = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            //open the palette file
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (string.IsNullOrWhiteSpace(lastOpenedPaletteFolder) == false)
+                    openFileDialog.InitialDirectory = lastOpenedPaletteFolder;
+
+                openFileDialog.Filter = "INVITE.PAL (*.PAL)|*.PAL";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Title = "Open INVITE.PAL File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    palettePath = openFileDialog.FileName;
+                    lastOpenedPaletteFolder = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            string saveFileName = "";
+            //open the palette file
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (string.IsNullOrWhiteSpace(lastOpenedBmFolder) == false)
+                    saveFileDialog.InitialDirectory = lastOpenedBmFolder;
+
+                saveFileDialog.Filter = "Bitmap Image (*.GIF)|*.GIF";
+                saveFileDialog.FilterIndex = 2;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.Title = "Save .GIF File";
+                saveFileDialog.DefaultExt = ".GIF";
+                saveFileDialog.FileName = fileName.Split('.')[0] + ".GIF";//cause the file name will always be .BM, split and add the .GIF
+
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    savePath = saveFileDialog.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            try
+            {
+                HarvesterImageConverter.ConvertAnimatedImage(abmFilePath, palettePath, savePath);
+                //MessageBox.Show($"Success!", "Success!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error occurred. Exception details: {ex.Message}", "Error!");
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string abmFolderPath = "";
+            string palettePath = "";
+            string saveFolder = "";
+
+            //open the image file
+            using (VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog())
+            {
+                openFolderDialog.Description = "Open Folder With .ABM Files";
+                openFolderDialog.UseDescriptionForTitle = true;
+
+                if (openFolderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    abmFolderPath = openFolderDialog.SelectedPath;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            //open the palette file
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (string.IsNullOrWhiteSpace(lastOpenedPaletteFolder) == false)
+                    openFileDialog.InitialDirectory = lastOpenedPaletteFolder;
+
+                openFileDialog.Filter = "INVITE.PAL (*.PAL)|*.PAL";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Title = "Open INVITE.PAL File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    palettePath = openFileDialog.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+
+            using (VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog())
+            {
+                openFolderDialog.Description = "Save Images to folder (will overwrite any existing files)";
+                openFolderDialog.UseDescriptionForTitle = true;
+
+                if (openFolderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    saveFolder = openFolderDialog.SelectedPath;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            try
+            {
+                FileInfo[] abmFiles = new DirectoryInfo(abmFolderPath).GetFiles().Where(x => x.Name.ToUpper().EndsWith(".ABM")).ToArray(); ;
+                
+                if (abmFiles.Length == 0)
+                    throw new Exception("No ABM files found");
+
+                //go through each bm file. Try to find a .PAL file to match it
+                foreach (var abmFile in abmFiles)
+                {
+                    string abmFileNameNoExtension = abmFile.Name.Split('.')[0];
+                    HarvesterImageConverter.ConvertAnimatedImage(abmFile.FullName, palettePath, Path.Combine(saveFolder, abmFileNameNoExtension + ".GIF"));
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error occurred. Exception details: {ex.Message}", "Error!");
+            }
         }
     }
 }

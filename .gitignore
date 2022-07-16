@@ -1,6 +1,10 @@
 *.bmp
 *.PAL
 *.BM
-Harvest-image/bin/
-Harvest-image/obj/Debug/
+Harvest-image-ui/bin/
+Harvest-image-ui/obj/Debug/
 packages/
+Harvester-image-ui/bin/
+Harvester-image-ui/dev/BABY.ABM
+Harvester-image-ui/dev/
+Harvester-image-ui/obj/

@@ -37,3 +37,8 @@ C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\
 C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.CopyComplete
 C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.exe
 C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.pdb
+C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.Native-Q16-arm64.dll
+C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.Native-Q16-x64.dll
+C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.Native-Q16-x86.dll
+C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.NET-Q16-AnyCPU.xml
+C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.NET.Core.xml
