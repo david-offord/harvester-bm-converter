@@ -48,7 +48,7 @@ namespace Harvester_image_ui
         }
 
 
-        public static void ConvertAnimatedImage(string abmFile, string palFile, string saveFile)
+        public static void ConvertAnimatedImage(string abmFile, string palFile, string saveFile, bool saveAsGif = true)
         {
             var imageBytes = System.IO.File.ReadAllBytes(abmFile);
 
@@ -174,11 +174,18 @@ namespace Harvester_image_ui
                         }
 
                         //delete any existing files
-                        if (File.Exists(Path.Combine("./tmp", abmTmpFiles + cell + ".png")))
-                            File.Delete(Path.Combine("./tmp", abmTmpFiles + cell + ".png"));
+                        if (saveAsGif == true)
+                        {
+                            if (File.Exists(Path.Combine("./tmp", abmTmpFiles + cell + ".png")))
+                                File.Delete(Path.Combine("./tmp", abmTmpFiles + cell + ".png"));
 
-                        bm1.Save(Path.Combine("./tmp", abmTmpFiles + cell + ".png"), ImageFormat.Png);//, ImageFormat.Png);
-
+                            bm1.Save(Path.Combine("./tmp", abmTmpFiles + cell + ".png"), ImageFormat.Png);//, ImageFormat.Png);
+                        }
+                        else
+                        {
+                            string newSaveFile = saveFile.Substring(0, saveFile.LastIndexOf(".")) + (cell + 1).ToString() + ".png";
+                            bm1.Save(newSaveFile, ImageFormat.Png);
+                        }
                     }
 
                 }
@@ -200,23 +207,31 @@ namespace Harvester_image_ui
                                 currentByteLocation++;
                             }
                         }
-
-                        bm1.Save(Path.Combine("./tmp", abmTmpFiles + cell + ".png"), ImageFormat.Png);//, ImageFormat.Png);
+                        if (saveAsGif == true)
+                            bm1.Save(Path.Combine("./tmp", abmTmpFiles + (cell + 1).ToString() + ".png"), ImageFormat.Png);//, ImageFormat.Png);
+                        else
+                        {
+                            string newSaveFile = saveFile.Substring(0, saveFile.LastIndexOf(".")) + (cell + 1).ToString() + ".png";
+                            bm1.Save(newSaveFile, ImageFormat.Png);
+                        }
                     }
                 }
 
             }
 
-            using (GifWriter gw = new GifWriter(saveFile))
+            if (saveAsGif)
             {
-                for (int i = 0; i < cellCount; i++)
+                using (GifWriter gw = new GifWriter(saveFile))
                 {
-                    using (Image img = Image.FromFile(Path.Combine("./tmp", abmTmpFiles + i + ".png")))
+                    for (int i = 0; i < cellCount; i++)
                     {
-                        // Add first image and set the animation delay to 100ms
-                        gw.WriteFrame(img, 100);
+                        using (Image img = Image.FromFile(Path.Combine("./tmp", abmTmpFiles + i + ".png")))
+                        {
+                            // Add first image and set the animation delay to 100ms
+                            gw.WriteFrame(img, 100);
+                        }
+                        File.Delete(Path.Combine("./tmp", abmTmpFiles + i + ".png"));//delete the tmp file
                     }
-                    File.Delete(Path.Combine("./tmp", abmTmpFiles + i + ".png"));//delete the tmp file
                 }
             }
 

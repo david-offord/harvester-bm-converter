@@ -14,6 +14,8 @@ namespace Harvester_image_ui
         string lastOpenedAbmFolder;
         string lastOpenedPaletteFolder;
 
+        bool saveAsGif = true;
+
         public MainForm()
         {
             InitializeComponent();
@@ -274,19 +276,31 @@ namespace Harvester_image_ui
             }
 
             string saveFileName = "";
-            //open the palette file
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 if (string.IsNullOrWhiteSpace(lastOpenedBmFolder) == false)
                     saveFileDialog.InitialDirectory = lastOpenedBmFolder;
 
-                saveFileDialog.Filter = "Bitmap Image (*.GIF)|*.GIF";
-                saveFileDialog.FilterIndex = 2;
-                saveFileDialog.RestoreDirectory = true;
-                saveFileDialog.Title = "Save .GIF File";
-                saveFileDialog.DefaultExt = ".GIF";
-                saveFileDialog.FileName = fileName.Split('.')[0] + ".GIF";//cause the file name will always be .BM, split and add the .GIF
+                if (saveAsGif)
+                {
+                    saveFileDialog.Filter = "Bitmap Image (*.GIF)|*.GIF";
+                    saveFileDialog.FilterIndex = 2;
+                    saveFileDialog.RestoreDirectory = true;
+                    saveFileDialog.Title = "Save .GIF File";
+                    saveFileDialog.DefaultExt = ".GIF";
+                    saveFileDialog.FileName = fileName.Split('.')[0] + ".GIF";//cause the file name will always be .BM, split and add the .GIF
+                }
+                else
+                {
+                    saveFileDialog.Filter = "Bitmap Image (*.PNG)|*.PNG";
+                    saveFileDialog.FilterIndex = 2;
+                    saveFileDialog.RestoreDirectory = true;
+                    saveFileDialog.Title = "Save PNG File (a file will be generated for each frame. A number will be appended to the filename)";
+                    saveFileDialog.DefaultExt = ".PNG";
+                    saveFileDialog.FileName = fileName.Split('.')[0] + ".PNG";//cause the file name will always be .BM, split and add the .GIF
+                }
+
 
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -302,7 +316,7 @@ namespace Harvester_image_ui
 
             try
             {
-                HarvesterImageConverter.ConvertAnimatedImage(abmFilePath, palettePath, savePath);
+                HarvesterImageConverter.ConvertAnimatedImage(abmFilePath, palettePath, savePath, saveAsGif);
                 //MessageBox.Show($"Success!", "Success!");
             }
             catch (Exception ex)
@@ -395,6 +409,16 @@ namespace Harvester_image_ui
             {
                 MessageBox.Show($"Error occurred. Exception details: {ex.Message}", "Error!");
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportAsGif_CheckedChanged(object sender, EventArgs e)
+        {
+            saveAsGif = exportAsGif.Checked;
         }
     }
 }

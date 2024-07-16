@@ -35,6 +35,7 @@ namespace Harvester_image_ui
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.exportAsGif = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ConvertSingleFileButton
@@ -90,10 +91,24 @@ namespace Harvester_image_ui
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // exportAsGif
+            // 
+            this.exportAsGif.AutoSize = true;
+            this.exportAsGif.Checked = true;
+            this.exportAsGif.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.exportAsGif.Location = new System.Drawing.Point(13, 130);
+            this.exportAsGif.Name = "exportAsGif";
+            this.exportAsGif.Size = new System.Drawing.Size(273, 17);
+            this.exportAsGif.TabIndex = 5;
+            this.exportAsGif.Text = "Export ABMs as Gif (Only applies to single animation)";
+            this.exportAsGif.UseVisualStyleBackColor = true;
+            this.exportAsGif.CheckedChanged += new System.EventHandler(this.exportAsGif_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(467, 159);
+            this.Controls.Add(this.exportAsGif);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -103,7 +118,9 @@ namespace Harvester_image_ui
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Harvester Image Converter";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -114,6 +131,7 @@ namespace Harvester_image_ui
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox exportAsGif;
     }
 }
 

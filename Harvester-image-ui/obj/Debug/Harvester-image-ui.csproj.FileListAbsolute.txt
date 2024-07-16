@@ -42,3 +42,24 @@ C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\
 C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.Native-Q16-x86.dll
 C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.NET-Q16-AnyCPU.xml
 C:\Users\crazy\Documents\Projects\Git\harvester-bm-converter\Harvester-image-ui\bin\Debug\Magick.NET.Core.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\Harvester-image-ui.exe.config
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\Harvester-image-ui.exe
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\Harvester-image-ui.pdb
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\System.Buffers.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\System.Memory.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\System.Resources.Extensions.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.AssemblyReference.cache
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.SuggestedBindingRedirects.cache
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester_image_ui.HelpImages.resources
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester_image_ui.HelpInfo.resources
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester_image_ui.MainForm.resources
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester_image_ui.Properties.Resources.resources
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.GenerateResource.cache
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.CoreCompileInputs.cache
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.Fody.CopyLocal.cache
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.csproj.CopyComplete
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.exe
+C:\Users\crazy\Documents\Programming Projects\harvester-bm-converter\Harvester-image-ui\obj\Debug\Harvester-image-ui.pdb
